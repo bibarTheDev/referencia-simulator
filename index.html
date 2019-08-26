@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>ABNTralho</title>
+    <style>
+        * {
+            font-family: Consolas, monospace;
+            font-size: 14px;
+        }
+
+        body {
+            padding: 40px;
+        }
+
+        input {
+            size: 80%;
+        }
+    </style>
+</head>
+<body>
+    <!-- input -->
+    <div>
+        <span>Autor: <input type="text" id="autor"></span>
+        <span>Título: <input type="text" id="titulo"> </span>
+        <span>URL: <input type="text" id="url"></span> <br> 
+        <input type="checkbox" id="italico"> italico
+    </div>
+    <!-- output -->
+    <div>
+        <p id="output"></p>
+    </div>
+    <!-- processamento -->
+    <script>
+        window.onkeydown = () => 
+        {
+            let resp;
+            let autor = document.getElementById("autor").value;
+            let titulo = document.getElementById("titulo").value;
+            let italico = document.getElementById("italico").checked;
+            let url = document.getElementById("url").value;
+
+            resp = autor + ". ";
+            resp += (!italico) ? "<b>" + titulo + ".</b> " : "<b><i>" + titulo + ".</i></b> ";
+            resp += "Disponível em: &lt;" + url + "&gt;. ";
+
+            let date = new Date();
+            let tresDiasAtras; //pega a data de 3 dias atrás, pra parecer responsável
+            tresDiasAtras += date.getDate() - 3 + "/";
+            tresDiasAtras += date.getMonth() + "/";
+            tresDiasAtras += date.getFullYear() + "";
+            
+            resp += "Acesso em: " + tresDiasAtras.split("undefined")[1] + "."; 
+
+            document.getElementById("output").innerHTML = resp;
+        };
+    </script>
+</body>
+</html>
